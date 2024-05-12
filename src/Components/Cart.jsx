@@ -30,24 +30,24 @@ const Cart = () => {
             </div>
             {selector.map((item) => (
               <div
-                key={item.id}
+                key={item.product.id}
                 className="flex justify-between items-center p-4 border-b">
                 <div className="flex items-center space-x-4">
                   <img
-                    src={item.imgLink}
-                    alt={item.name}
+                    src={item.product.imgLink}
+                    alt={item.product.name}
                     className="h-16 w-16 bg-gray-300"
                   />
                   <div>
-                    <p className="font-medium">{item.name}</p>
-                    <p className="text-gray-700">₹ {item.price}</p>
+                    <p className="font-medium">{item.product.name}</p>
+                    <p className="text-gray-700">₹ {item.product.price}</p>
                   </div>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
                   <button
                     className="text-red-500 hover:text-red-700 focus:outline-none"
-                    onClick={() => removeCartProduct(item.id)}>
+                    onClick={() => removeCartProduct(item.product.id)}>
                     Delete
                   </button>
                 </div>
@@ -55,7 +55,7 @@ const Cart = () => {
             ))}
           </div>
           <div className="text-right p-4 font-medium">
-            Total amount: ₹ {selector.reduce((total, item) => total + item.price, 0)}
+            Total amount: ₹ {selector.reduce((total, item) => total + item.product.price * item.quantity, 0)}
           </div>
         </div>
       ) : (
